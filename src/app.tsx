@@ -19,14 +19,31 @@ const App: React.FC = () => {
     setInputValue('');
   };
 
-  const getResult = (
-    prevInput: string,
-    Input: string,
-    operator: string,
-  ): void => {
-    let result: string = '';
-
-    setInputValue();
+  const getResult = (): void => {
+    let prevValue: number = parseInt(prevInputValue, 10);
+    let currenValue: number = parseInt(inputValue, 10);
+    let result: number;
+    switch (operator) {
+      case '+':
+        result = prevValue + currenValue;
+        setInputValue(result.toString());
+        break;
+      case '-':
+        result = prevValue - currenValue;
+        setInputValue(result.toString());
+        break;
+      case '*':
+        result = prevValue * currenValue;
+        setInputValue(result.toString());
+        break;
+      case '/':
+        result = prevValue / currenValue;
+        setInputValue(result.toString());
+        break;
+      default:
+        setInputValue('');
+        break;
+    }
   };
 
   const clearDashboard = (): void => {
@@ -59,7 +76,7 @@ const App: React.FC = () => {
         <button onClick={clearDashboard}>C</button>
         <button onClick={clickNumPad}>0</button>
         <button onClick={clickSignPad}>/</button>
-        <button onClick={}>=</button>
+        <button onClick={getResult}>=</button>
       </div>
     </div>
   );
